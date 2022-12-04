@@ -40,7 +40,7 @@ function showCart() {
   const items = state.cart.items;
   // Only iterate over the cart if it is not empty
   if (items) {
-    for (let item of items) {
+    for (let item in items) {
       // TODO: Create a TR
       let tr = document.createElement('tr');
       // TODO: Create a TD for the delete link, quantity,  and the item

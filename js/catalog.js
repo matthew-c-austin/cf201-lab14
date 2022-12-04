@@ -40,10 +40,25 @@ function addSelectedItemToCart() {
   // TODO: get the quantity
   let productsName = document.getElementById('items').value;
   let productsQuantity = document.getElementById('quantity').value;
+  // it item added is less than 1 the item will not be added
+  if (productsQuantity <= 0){
+    return;
+  }
+  let product = {};
+
+  console.log(productsName);
+  console.log(productsQuantity);
+  for (let currentProduct in state.allProducts) {
+    if (currentProduct.name === productsName){
+      product = currentProduct;
+      break;
+    }
+
+  }
   // TODO: using those, add one item to the Cart
-  let item1 = new CartItem(productsName, productsQuantity);
-  state.cart.push(item1);
+  state.cart.addItem(product, productsQuantity);
 }
+
 
 console.log(state.cart);
 
