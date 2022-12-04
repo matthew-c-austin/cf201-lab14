@@ -58,9 +58,13 @@ header a {
 
 
 
+
 .card{
   display: flex;
-  flex-direction: ;
+  flex-direction: column;
+  width: fit-content;
+  margin: 1rem;
+align-items: flex-start;
 }
 
 .copy{
@@ -72,10 +76,29 @@ header a {
   box-shadow: 10px 5px 5px rgb(216, 176, 15);
 }
 
+.copy ol li{
+  padding-top: 3px;
+}
+
 footer{
 background-color: rgba(128, 128, 0, 0.536);
 height: auto;
 padding: 1rem;
 border-radius: 25px;
+}
 
+.fieldset{
+ 
+}
+
+
+input{
+  background-color: rgb(158, 184, 125);
+
+}
+
+input:hover{
+  transition: .5s;
+  border-radius: 25px;
+  box-shadow: 10px 5px 5px rgb(216, 176, 15);
 }
