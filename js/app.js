@@ -9,21 +9,26 @@ const state = {
 // Cart constructor.
 const Cart = function(items) {
   // this.items is an array of CartItem instances.
-  // Initialize test branch
   this.items = items;
 };
 
 Cart.prototype.addItem = function(product, quantity) {
+  const newCartItem = new CartItem(product, quantity);
+  this.items.push(newCartItem);
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
 };
 
 Cart.prototype.saveToLocalStorage = function() {
+  let cart = JSON.stringify(this);
+  localStorage.setItem('cart', cart);
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
 };
 
-Cart.prototype.removeItem = function(item) {
+Cart.prototype.removeItem = function(itemName) {
+// Setting cart items array, filtering it out, filter method iterates over indices in the array and keeps them if they pass the conditional, i.e., if they are not the product name to be removed.
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
+  this.items = this.items.filter(item => item.product.name !== itemName);
 };
 
 const CartItem = function(product, quantity) {
@@ -31,7 +36,7 @@ const CartItem = function(product, quantity) {
   this.quantity = quantity;
 };
 
-// Product contructor.
+// Product constructor.
 const Product = function(filePath, name) {
   this.filePath = filePath;
   this.name = name;

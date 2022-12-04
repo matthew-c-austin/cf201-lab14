@@ -9,35 +9,59 @@ state.cart = new Cart([]);
 // (the things in the state.allProducts array) into the drop down list.
 function populateForm() {
 
-  //TODO: Add an <option> tag inside the form's select for each product
+  //TODO: Add an <option> tag inside the form's select for each product (COMPLETED)
   const selectElement = document.getElementById('items');
   for (let i in state.allProducts) {
-
+    let option = document.createElement('option');
+    option.innerText = `${state.allProducts[i].name}`;
+    selectElement.appendChild(option);
   }
-
 }
+
 
 // When someone submits the form, we need to add the selected item to the cart
 // object, save the whole thing back to local storage and update the screen
 // so that it shows the # of items in the cart and a quick preview of the cart itself.
 function handleSubmit(event) {
-
-  // TODO: Prevent the page from reloading
-
+  event.preventDefault();
+  
+  // TODO: Prevent the page from reloading (COMPLETED)
   // Do all the things ...
   addSelectedItemToCart();
   state.cart.saveToLocalStorage();
   updateCounter();
   updateCartPreview();
-
+  
 }
 
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
   // TODO: get the quantity
+  let productsName = document.getElementById('items').value;
+  let productsQuantity = document.getElementById('quantity').value;
+  // it item added is less than 1 the item will not be added
+  if (productsQuantity <= 0){
+    return;
+  }
+  let product = {};
+
+  console.log(productsName);
+  console.log(productsQuantity);
+  for (let currentProduct in state.allProducts) {
+    if (currentProduct.name === productsName){
+      product = currentProduct;
+      break;
+    }
+
+  }
   // TODO: using those, add one item to the Cart
+  state.cart.addItem(product, productsQuantity);
 }
+
+
+console.log(state.cart);
+
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() { }
